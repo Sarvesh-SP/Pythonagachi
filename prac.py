@@ -12,7 +12,7 @@ class Creature():
         self.hunger = 0
         self.boredom = 0
         self.tiredness = 0
-        self.dirtyness = 0
+        self.dirtiness = 0
         # Represents Food, sleeping, Alive
         self.food = 0
         self.isSleeping = False
@@ -59,13 +59,28 @@ class Creature():
             self.boredom = 0
 
     def awake():
-        pass
+        """Simulate randomly waking a creature up."""
+        value = random.randint(0, 2)
+        if value == 0:
+            print(f"{self.name} just woke up!!")
+            self.tiredness = 0
+        else:
+            print(f"{self.name} won't wake up")
+            self.sleep()
 
     def clean():
-        pass
+        """Simulate taking a bath to completely clean the creature"""
+        self.dirtiness = 0
+        print(f"{self.name} has taken a bath. All clean!")
 
     def forage():
-        pass
+        """Simulate forging for food. This will increase the creatures food attributes however , it will also increase their dirtiness"""
+        food_found = random.randint(0, 4)
+        self.food += food_found
+
+        self.dirtiness += 2
+
+        print(f"{self.name} found {food_found} pieces of food!")
 
     def show_values():
         pass
