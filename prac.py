@@ -30,8 +30,22 @@ class Creature():
         if self.hunger < 0:
             self.hunger = 0
 
-    def play():
-        pass
+    def play(self):
+        """Play a guessing game to lower the creatures boredom
+        If you win the game, lower the boredom even more."""
+        bore = random.randint(0, 2)
+        print(f"\n{self.name} wants to play a game.")
+        print(f"{self.name} is thinking a number 0, 1, 2.")
+        guess = int(input('What is your guess: '))
+        if guess == bore:
+            print('That is correct!!!!!!')
+            self.boredom -= 3
+        else:
+            print(f'WRONG!!! {self.name} was thinking of {self.bore}')
+            self.boredom -= 1
+
+        if self.boredom < 0:
+            self.boredom = 0
 
     def sleep():
         pass
