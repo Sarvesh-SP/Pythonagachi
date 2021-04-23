@@ -27,6 +27,9 @@ class Creature():
         else:
             print(f"{self.name} does'nt have any food! Better forage for some.")
 
+        if self.hunger < 0:
+            self.hunger = 0
+
     def play():
         pass
 
