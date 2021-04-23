@@ -82,11 +82,42 @@ class Creature():
 
         print(f"{self.name} found {food_found} pieces of food!")
 
-    def show_values():
-        pass
+    def show_values(self):
+        """Show the current information about the creature """
+        print(f"\nCreature name: {self.name}")
+        print(f"Hunger (0-10): {self.hunger}")
+        print(f"Boredom (0-10): {self.boredom}")
+        print(f"Tiredness (0-10): {self.tiredness}")
+        print(f"Dirtiness (0-10): {self.dirtiness}")
 
-    def increment_values():
-        pass
+        print(f"\nFood Inventory: {self.food} pieces.")
 
-    def kill():
-        pass
+        if self.isSleeping:
+            print("Current Status: Sleeping")
+        else:
+            print("Current Status: Awake")
+
+    def increment_values(self, dif):
+        """User must set an arbitrary diffuculty. This will control how much 'damage' you take each round. Update the current values of the creatures based on the difficulty."""
+        self.hunger += random.randint(0, dif)
+        self.dirtiness += random.randint(0, dif)
+        if self.isSleeping == False:
+            self.boredom += random.randint(0, dif)
+            self.tiredness += random.randint(0, dif)
+
+    def kill(self):
+        """Check for all conditions to kill or sleep the creature."""
+        if self.hunger >= 10:
+            print(f"{self.name} has starved to death....")
+            self.isAlive = False
+        elif self.dirtiness >= 10:
+            print(f"{self.name} has suffered an Infection and died...")
+            self.isAlive = False
+        elif self.boredom >= 10:
+            self.boredom = 10
+            print(f"{self.name} is bored. Falling asleep...")
+            self.isSleeping = True
+        elif self.tiredness >= 10:
+            self.tiredness = 10
+            print(f"{self.name} is sleepy. Falling asleep...")
+            self.isSleeping = True
