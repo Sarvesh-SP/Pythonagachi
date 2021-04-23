@@ -1,3 +1,6 @@
+import random
+
+
 class Creature():
     """Create a simple Tomogachi Clone"""
 
@@ -10,9 +13,19 @@ class Creature():
         self.boredom = 0
         self.tiredness = 0
         self.dirtyness = 0
+        # Represents Food, sleeping, Alive
+        self.food = 0
+        self.isSleeping = False
+        self.isAlive = True
 
-    def eat():
-        pass
+    def eat(self):
+        """Simulate eating. Each time you eat, take one food away from the inventory and randomly take a value away from hunger."""
+        if self.food > 0:
+            self.food -= 1
+            self.hunger -= random.randint(1, 4)
+            print(f'Yumm!! {self.name} ate a great meal!')
+        else:
+            print(f"{self.name} does'nt have any food! Better forage for some.")
 
     def play():
         pass
