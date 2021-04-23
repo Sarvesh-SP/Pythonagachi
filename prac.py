@@ -47,8 +47,16 @@ class Creature():
         if self.boredom < 0:
             self.boredom = 0
 
-    def sleep():
-        pass
+    def sleep(self):
+        """Simulate sleeping. The only thing a player can do when the creature is sleeping is try to wake up. However, tiredness and boredom should decrease each round when sleeping"""
+        self.isSleeping = True
+        self.tiredness -= 3
+        self.boredom -= 2
+
+        if self.tiredness < 0:
+            self.tiredness = 0
+        if self.boredom < 0:
+            self.boredom = 0
 
     def awake():
         pass
