@@ -8,14 +8,14 @@ def show_menu(creature):
         creature ([Instance]): [If Sleeping, the player can Only try to wake the creature up by default]
     """
     if creature.isSleeping:
-        choice = input("\nEnter (6) to try and wake up")
-        choice = 6
+        choice = input("\nEnter (6) to try and wake up: ")
+        choice = '6'
     else:
-        print("\n Enter (1) to eat.")
-        print("\nEnter (2) to play.")
-        print("\nEnter (3) to sleep.")
-        print("\nEnter (4) to take a bath.")
-        print("\nEnter (5) to forage for food.")
+        print("\nEnter (1) to eat.")
+        print("Enter (2) to play.")
+        print("Enter (3) to sleep.")
+        print("Enter (4) to take a bath.")
+        print("Enter (5) to forage for food.")
         choice = input("What is your choice: ")
 
     return choice
@@ -37,6 +37,8 @@ def call_action(creature, choice):
     elif choice == '4':
         creature.clean()
     elif choice == '5':
+        creature.forage()
+    elif choice == '6':
         creature.awake()
 
     else:
@@ -55,3 +57,29 @@ running = True
 while running:
     name = input('What name would you like to give your pet Pythonagachi: ')
     player = Creature(name)
+
+    rounds = 1
+    while player.isAlive:
+        print("\n....................................................................................")
+        print(f"Round #{rounds}")
+        player.show_values()
+        rChoice = show_menu(player)
+        call_action(player, rChoice)
+        print(f"\nRound # {rounds} Summary.")
+
+        player.show_values()
+        input("\nPress (enter) to continue...")
+
+        player.increment_values(diff)
+        player.kill()
+
+        rounds += 1
+
+    print("\nR.I.P")
+    print(f"{player.name} survived a total of {rounds - 1} rounds.")
+
+    choice = input("would you lke to play again (y/n): ").lower()
+
+    if choice != 'y':
+        running = False
+        print("Thank you for playing Pythonagachi.")
